@@ -47,7 +47,7 @@ Requires Node.js 20+ and pnpm 8+.
 
 ```sh
 # Clone the repository
-git clone https://github.com/JamilAfouri99/by-order.git && cd by-order
+git clone https://github.com/JamilAfouri99/shelby-empire.git && cd by-order
 
 # Install dependencies
 pnpm install
