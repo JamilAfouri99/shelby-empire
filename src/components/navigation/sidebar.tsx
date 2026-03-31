@@ -21,7 +21,7 @@ export function Sidebar() {
     <aside className="hidden md:flex md:w-56 md:flex-col md:border-r md:border-border md:bg-surface">
       <div className="flex h-16 items-center px-6">
         <Link href="/today" className="font-heading text-xl font-bold text-gold">
-          By Order
+          Shelby Empire
         </Link>
       </div>
       <nav className="flex-1 space-y-1 px-3 py-4">

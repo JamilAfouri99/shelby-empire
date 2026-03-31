@@ -17,7 +17,7 @@ export function getTwitterShareUrl(grid: ShareGrid): string {
 }
 
 export function copyQuoteToClipboard(quote: string, character: string): Promise<boolean> {
-  const text = `"${quote}" — ${character}\n\nbyorder.com`;
+  const text = `"${quote}" — ${character}\n\nshelbyempire.com`;
   return navigator.clipboard.writeText(text).then(
     () => true,
     () => false

@@ -9,7 +9,7 @@ import { ErrorDisplay } from "@/components/common/error-display";
 import type { UserBadge } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Your Empire — By Order",
+  title: "Your Empire — Shelby Empire",
 };
 
 export default async function EmpirePage() {

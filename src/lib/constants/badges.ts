@@ -11,7 +11,7 @@ export const BADGES: BadgeDefinition[] = [
   { key: "streak_7", name: "Weekly Regular", description: "Reach a 7-day streak", icon: "🔥" },
   { key: "streak_30", name: "Made Man", description: "Reach a 30-day streak", icon: "💎" },
   { key: "streak_100", name: "Untouchable", description: "Reach a 100-day streak", icon: "🛡️" },
-  { key: "streak_365", name: "By Order", description: "Reach a 365-day streak", icon: "👑" },
+  { key: "streak_365", name: "Shelby Empire", description: "Reach a 365-day streak", icon: "👑" },
   { key: "games_10", name: "Getting Started", description: "Complete 10 daily challenges", icon: "📝" },
   { key: "games_50", name: "Dedicated", description: "Complete 50 daily challenges", icon: "📚" },
   { key: "games_100", name: "Veteran", description: "Complete 100 daily challenges", icon: "🎖️" },

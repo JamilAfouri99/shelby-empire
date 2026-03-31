@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "By Order — Daily Peaky Blinders Companion",
-    short_name: "By Order",
+    name: "Shelby Empire — Daily Peaky Blinders Companion",
+    short_name: "Shelby Empire",
     description: "Your daily ritual. A fresh quote, a daily challenge, and an empire to build.",
     start_url: "/today",
     display: "standalone",

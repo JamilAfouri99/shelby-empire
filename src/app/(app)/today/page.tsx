@@ -10,7 +10,7 @@ import { ErrorDisplay } from "@/components/common/error-display";
 import type { GameResult } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Today's Challenge — By Order",
+  title: "Today's Challenge — Shelby Empire",
 };
 
 export default async function TodayPage() {

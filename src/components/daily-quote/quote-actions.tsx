@@ -13,7 +13,7 @@ export function QuoteActions({ text, character }: QuoteActionsProps) {
   const { copied, copyQuote } = useDailyQuote();
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    `"${text}" — ${character}\n\nbyorder.com`
+    `"${text}" — ${character}\n\nshelbyempire.com`
   )}`;
 
   return (

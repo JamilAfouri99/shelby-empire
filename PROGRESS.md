@@ -1,4 +1,4 @@
-# By Order — Build Progress
+# Shelby Empire — Build Progress
 
 ## Phase 1: Foundation ✅
 - [x] Next.js project with pnpm, TypeScript, Tailwind v4

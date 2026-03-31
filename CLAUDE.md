@@ -1,7 +1,7 @@
-# By Order — Claude Code Guide
+# Shelby Empire — Claude Code Guide
 
 ## Project Overview
-"By Order" is a Peaky Blinders fan companion app. Daily quote + mindset lesson, daily trivia game (Who Said It?, Blinder or Bluff?), streak tracking with empire progression, searchable quote vault, and leaderboards.
+"Shelby Empire" is a Peaky Blinders fan companion app. Daily quote + mindset lesson, daily trivia game (Who Said It?, Blinder or Bluff?), streak tracking with empire progression, searchable quote vault, and leaderboards.
 
 ## Tech Stack
 - Next.js 15 (App Router, RSC, Server Actions)

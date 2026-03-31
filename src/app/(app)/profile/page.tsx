@@ -9,7 +9,7 @@ import { ProfileEditor } from "@/components/profile/profile-editor";
 import type { Profile, UserBadge, GameResult } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Profile — By Order",
+  title: "Profile — Shelby Empire",
 };
 
 export default async function ProfilePage() {

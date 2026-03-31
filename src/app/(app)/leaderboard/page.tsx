@@ -8,7 +8,7 @@ import { getEmpireLevel } from "@/lib/constants/empire-levels";
 import { Flame } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Leaderboard — By Order",
+  title: "Leaderboard — Shelby Empire",
 };
 
 export default async function LeaderboardPage() {

@@ -13,14 +13,14 @@ const besley = Besley({
 });
 
 export const metadata: Metadata = {
-  title: "By Order — The Daily Peaky Blinders Companion",
+  title: "Shelby Empire — The Daily Peaky Blinders Companion",
   description:
     "Your daily ritual. A fresh quote, a daily challenge, and an empire to build. By order of the Peaky Blinders.",
   openGraph: {
-    title: "By Order — The Daily Peaky Blinders Companion",
+    title: "Shelby Empire — The Daily Peaky Blinders Companion",
     description: "Your daily ritual. A fresh quote, a daily challenge, and an empire to build.",
     type: "website",
-    url: "https://byorder.com",
+    url: "https://shelbyempire.com",
   },
 };
 

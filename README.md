@@ -1,4 +1,4 @@
-# By Order
+# Shelby Empire
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Node.js](https://img.shields.io/badge/Node.js-20%2B-green.svg)](https://nodejs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/) [![Docker](https://img.shields.io/badge/Docker-ready-blue.svg)](Dockerfile) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -6,7 +6,7 @@ The Daily Peaky Blinders Companion -- a daily quote, a daily challenge, and an e
 
 ## What It Does
 
-By Order is a fan companion app for Peaky Blinders. Every day you get a fresh quote with a mindset lesson, play a trivia challenge, track your streak, grow your empire from The Streets to The Crown, and compete on leaderboards. Think Wordle meets Peaky Blinders.
+Shelby Empire is a fan companion app for Peaky Blinders. Every day you get a fresh quote with a mindset lesson, play a trivia challenge, track your streak, grow your empire from The Streets to The Crown, and compete on leaderboards. Think Wordle meets Peaky Blinders.
 
 ## Features
 
@@ -47,7 +47,7 @@ Requires Node.js 20+ and pnpm 8+.
 
 ```sh
 # Clone the repository
-git clone https://github.com/JamilAfouri99/shelby-empire.git && cd by-order
+git clone https://github.com/JamilAfouri99/shelby-empire.git && cd shelby-empire
 
 # Install dependencies
 pnpm install

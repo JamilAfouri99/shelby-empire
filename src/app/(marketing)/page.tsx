@@ -31,7 +31,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border-subtle">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <span className="font-heading text-xl font-bold text-gold">By Order</span>
+          <span className="font-heading text-xl font-bold text-gold">Shelby Empire</span>
           <div className="flex gap-3">
             <Link href="/login">
               <Button variant="ghost" size="sm">Sign In</Button>
@@ -102,7 +102,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t border-border-subtle py-8 text-center text-sm text-text-muted">
-        <p>By Order &copy; {new Date().getFullYear()}. A fan project. Not affiliated with BBC or the Peaky Blinders franchise.</p>
+        <p>Shelby Empire &copy; {new Date().getFullYear()}. A fan project. Not affiliated with BBC or the Peaky Blinders franchise.</p>
       </footer>
     </div>
   );

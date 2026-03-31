@@ -1,4 +1,4 @@
-# By Order — Full Setup Guide
+# Shelby Empire — Full Setup Guide
 
 Complete step-by-step instructions to get the app running locally.
 
@@ -16,7 +16,7 @@ Complete step-by-step instructions to get the app running locally.
 ## Step 1: Install Dependencies
 
 ```bash
-cd /Users/jimmy-mac/general/development/by-order
+cd /Users/jimmy-mac/general/development/shelby-empire
 pnpm install
 ```
 
@@ -26,7 +26,7 @@ pnpm install
 
 1. Go to [supabase.com/dashboard](https://supabase.com/dashboard)
 2. Click **"New Project"**
-3. Choose a name (e.g. `by-order`), set a database password, pick a region
+3. Choose a name (e.g. `shelby-empire`), set a database password, pick a region
 4. Wait for the project to finish provisioning (~1 minute)
 5. Go to **Settings → API** and copy:
    - **Project URL** (looks like `https://xxxxx.supabase.co`)
@@ -145,7 +145,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Step 9: Test the Full Flow
 
-1. **Landing page** → You should see the "By Order" landing page at `/`
+1. **Landing page** → You should see the "Shelby Empire" landing page at `/`
 2. **Sign up** → Click "Start Your Empire" → Create an account with email/password/username
 3. **Today page** → After signup, you'll be redirected to `/today` with the daily quote and game
 4. **Play the game** → Try "Who Said It?" or "Blinder or Bluff?"

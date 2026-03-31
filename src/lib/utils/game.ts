@@ -31,11 +31,11 @@ export class WhoSaidItStrategy implements GameStrategy {
       .join("");
 
     return {
-      title: `🎩 By Order — Day ${dayNum}`,
+      title: `🎩 Shelby Empire — Day ${dayNum}`,
       grid: `Who Said It? ${squares}`,
       streak,
       empireLevel: empire.name,
-      url: "byorder.com",
+      url: "shelbyempire.com",
     };
   }
 }
@@ -59,11 +59,11 @@ export class BlinderOrBluffStrategy implements GameStrategy {
     const result = guesses[0]?.result === "correct" ? "🟩" : "🟥";
 
     return {
-      title: `🎩 By Order — Day ${dayNum}`,
+      title: `🎩 Shelby Empire — Day ${dayNum}`,
       grid: `Blinder or Bluff? ${result}`,
       streak,
       empireLevel: empire.name,
-      url: "byorder.com",
+      url: "shelbyempire.com",
     };
   }
 }

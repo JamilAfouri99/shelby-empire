@@ -1,4 +1,4 @@
-# Contributing to By Order
+# Contributing to Shelby Empire
 
 Thanks for your interest in contributing! This document covers the essentials.
 

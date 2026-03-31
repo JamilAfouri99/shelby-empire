@@ -7,7 +7,7 @@ import { PageLoading } from "@/components/common/loading";
 import { ErrorDisplay } from "@/components/common/error-display";
 
 export const metadata: Metadata = {
-  title: "Quote Vault — By Order",
+  title: "Quote Vault — Shelby Empire",
 };
 
 type VaultPageProps = {

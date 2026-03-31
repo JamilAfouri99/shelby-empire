@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
               display: "flex",
             }}
           >
-            BY ORDER
+            SHELBY EMPIRE
           </div>
           <div
             style={{
@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
               display: "flex",
             }}
           >
-            byorder.com
+            shelbyempire.com
           </div>
         </div>
       </div>
