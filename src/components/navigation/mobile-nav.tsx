@@ -17,23 +17,32 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-surface md:hidden">
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-border-subtle bg-surface/95 backdrop-blur-md md:hidden"
+      style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
+    >
       <div className="flex items-center justify-around py-2">
-        {NAV_ITEMS.map(({ href, label, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className={cn(
-              "flex flex-col items-center gap-0.5 px-2 py-1 text-xs transition-colors",
-              pathname.startsWith(href)
-                ? "text-gold"
-                : "text-text-secondary"
-            )}
-          >
-            <Icon className="h-5 w-5" />
-            {label}
-          </Link>
-        ))}
+        {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
+          const active = pathname.startsWith(href);
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                "flex flex-col items-center px-2 py-1 text-xs transition-colors",
+                active ? "text-gold" : "text-text-muted"
+              )}
+            >
+              <Icon className="h-5 w-5" />
+              <span className="mt-0.5">{label}</span>
+              {active ? (
+                <span className="mt-0.5 h-1 w-1 rounded-full bg-gold" />
+              ) : (
+                <span className="mt-0.5 h-1 w-1" />
+              )}
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );

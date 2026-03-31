@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ok, err, type Result } from "@/lib/utils";
 import { calculateStreakUpdate } from "@/lib/utils/streak";
 import { redis } from "@/lib/redis/client";
+import { checkAndAwardBadges } from "@/actions/badges";
 import type { UserStreak } from "@/types";
 
 export async function recordDailyActivity(): Promise<Result<UserStreak, string>> {
@@ -40,6 +41,7 @@ export async function recordDailyActivity(): Promise<Result<UserStreak, string>>
       total_days_active: 1,
     });
 
+    await checkAndAwardBadges(user.id, { streak: newStreak });
     await updateLeaderboardRedis(user.id, newStreak);
     return ok(newStreak);
   }
@@ -65,6 +67,7 @@ export async function recordDailyActivity(): Promise<Result<UserStreak, string>>
     updated_at: new Date().toISOString(),
   };
 
+  await checkAndAwardBadges(user.id, { streak: updatedStreak });
   await updateLeaderboardRedis(user.id, updatedStreak);
   return ok(updatedStreak);
 }

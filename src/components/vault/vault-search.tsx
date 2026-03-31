@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useTransition } from "react";
+import { useCallback, useRef, useState, useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
@@ -14,6 +14,8 @@ export function VaultSearch() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const debounceRef = useRef<NodeJS.Timeout>(null);
+  const [showAllCharacters, setShowAllCharacters] = useState(false);
 
   const updateParams = useCallback(
     (key: string, value: string | null) => {
@@ -46,9 +48,12 @@ export function VaultSearch() {
           className="pl-10"
           onChange={(e) => {
             const value = e.target.value;
-            if (value.length === 0 || value.length >= 2) {
-              updateParams("query", value || null);
-            }
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+            debounceRef.current = setTimeout(() => {
+              if (value.length === 0 || value.length >= 2) {
+                updateParams("query", value || null);
+              }
+            }, 300);
           }}
         />
       </div>
@@ -60,9 +65,14 @@ export function VaultSearch() {
             {QUICK_TAGS.map((tag) => (
               <Button
                 key={tag}
-                variant={activeTag === tag ? "default" : "ghost"}
+                variant="ghost"
                 size="sm"
                 onClick={() => updateParams("tag", activeTag === tag ? null : tag)}
+                className={
+                  activeTag === tag
+                    ? "bg-gold/15 text-gold border border-gold/25 hover:bg-gold/15 hover:text-gold"
+                    : "bg-surface-elevated text-text-secondary border border-border hover:text-text-primary"
+                }
               >
                 {tag}
               </Button>
@@ -73,16 +83,29 @@ export function VaultSearch() {
         <div>
           <p className="text-xs text-text-secondary mb-2">Character</p>
           <div className="flex flex-wrap gap-2">
-            {CHARACTERS.slice(0, 8).map((char) => (
+            {(showAllCharacters ? CHARACTERS : CHARACTERS.slice(0, 8)).map((char) => (
               <Button
                 key={char}
-                variant={activeCharacter === char ? "default" : "ghost"}
+                variant="ghost"
                 size="sm"
                 onClick={() => updateParams("character", activeCharacter === char ? null : char)}
+                className={
+                  activeCharacter === char
+                    ? "bg-gold/15 text-gold border border-gold/25 hover:bg-gold/15 hover:text-gold"
+                    : "bg-surface-elevated text-text-secondary border border-border hover:text-text-primary"
+                }
               >
                 {char.split(" ")[0]}
               </Button>
             ))}
+            {CHARACTERS.length > 8 && (
+              <button
+                onClick={() => setShowAllCharacters(!showAllCharacters)}
+                className="text-sm text-text-muted hover:text-gold transition-colors"
+              >
+                {showAllCharacters ? "Show less" : `+${CHARACTERS.length - 8} more`}
+              </button>
+            )}
           </div>
         </div>
 
@@ -90,7 +113,7 @@ export function VaultSearch() {
           <select
             value={activeSeason}
             onChange={(e) => updateParams("season", e.target.value || null)}
-            className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-text-primary"
+            className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-primary"
           >
             <option value="">All Seasons</option>
             {[1, 2, 3, 4, 5, 6].map((s) => (
@@ -100,7 +123,7 @@ export function VaultSearch() {
           <select
             value={activeMood}
             onChange={(e) => updateParams("mood", e.target.value || null)}
-            className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-text-primary"
+            className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-primary"
           >
             <option value="">All Moods</option>
             {MOODS.map((m) => (

@@ -24,7 +24,7 @@ export default function SignupPage() {
   return (
     <Card className="w-full">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl text-gold">Join By Order</CardTitle>
+        <CardTitle className="font-heading text-2xl text-gold">Join By Order</CardTitle>
         <CardDescription>Start building your empire today</CardDescription>
       </CardHeader>
       <CardContent>

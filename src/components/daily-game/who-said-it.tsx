@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -15,15 +16,20 @@ type WhoSaidItProps = {
 
 function GuessRow({ guess }: { guess: GameGuess }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, x: -12 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       className={cn(
         "flex items-center gap-2 rounded-lg px-3 py-2 text-sm",
-        guess.result === "correct" ? "bg-success/20 text-success" : "bg-error/20 text-error"
+        guess.result === "correct"
+          ? "bg-success/10 text-success border border-success/20"
+          : "bg-error/10 text-error border border-error/20"
       )}
     >
       <span>{guess.result === "correct" ? "🟩" : "⬛"}</span>
       <span>{guess.value}</span>
-    </div>
+    </motion.div>
   );
 }
 
@@ -43,26 +49,43 @@ export function WhoSaidIt({ data, gameState, onGuess, submitting }: WhoSaidItPro
 
         {guesses.length > 0 && (
           <div className="space-y-2">
-            {guesses.map((guess, i) => (
-              <GuessRow key={i} guess={guess} />
-            ))}
+            <AnimatePresence initial={false}>
+              {guesses.map((guess) => (
+                <GuessRow key={guess.value} guess={guess} />
+              ))}
+            </AnimatePresence>
           </div>
         )}
 
         {gameState.status === "playing" && (
-          <div className="grid grid-cols-2 gap-2">
+          <motion.div
+            className="grid grid-cols-2 gap-2"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.07 } },
+            }}
+          >
             {data.options.map((option) => (
-              <Button
+              <motion.div
                 key={option}
-                variant={guessedOptions.has(option) ? "ghost" : "secondary"}
-                disabled={guessedOptions.has(option) || submitting}
-                onClick={() => onGuess(option)}
-                className="h-auto py-3 text-sm"
+                variants={{
+                  hidden: { opacity: 0, y: 8 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
+                }}
               >
-                {option}
-              </Button>
+                <Button
+                  variant="ghost"
+                  disabled={guessedOptions.has(option) || submitting}
+                  onClick={() => onGuess(option)}
+                  className="h-auto w-full py-3 text-sm bg-surface-elevated border border-border hover:border-gold/30 hover:bg-surface-overlay"
+                >
+                  {option}
+                </Button>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         <GameStatusMessage gameState={gameState} />

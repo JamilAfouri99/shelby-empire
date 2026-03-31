@@ -1,13 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { getEmpireLevel } from "@/lib/constants/empire-levels";
-
-type LeaderboardEntry = {
-  rank: number;
-  userId: string;
-  username: string;
-  value: number;
-  empireLevel: number;
-};
+import type { LeaderboardEntry } from "@/actions/leaderboard";
 
 type LeaderboardTableProps = {
   entries: LeaderboardEntry[];
@@ -31,7 +24,7 @@ export function LeaderboardTable({ entries, currentUserId, label }: LeaderboardT
       <CardContent className="p-0">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-border text-xs text-text-secondary">
+            <tr className="border-b border-border text-xs text-text-muted">
               <th className="py-3 pl-4 text-left">#</th>
               <th className="py-3 text-left">Player</th>
               <th className="py-3 text-left">Empire</th>
@@ -45,8 +38,8 @@ export function LeaderboardTable({ entries, currentUserId, label }: LeaderboardT
               return (
                 <tr
                   key={entry.userId}
-                  className={`border-b border-border last:border-0 ${
-                    isCurrentUser ? "bg-gold/5" : ""
+                  className={`border-b border-border-subtle last:border-0 ${
+                    isCurrentUser ? "bg-gold/[0.04]" : ""
                   }`}
                 >
                   <td className="py-3 pl-4 text-sm">

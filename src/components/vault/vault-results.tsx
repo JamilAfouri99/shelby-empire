@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Quote } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -38,7 +39,7 @@ export function VaultResults({ quotes, total, page, totalPages }: VaultResultsPr
 
 function VaultQuoteCard({ quote }: { quote: Quote }) {
   return (
-    <Card className="group">
+    <Card className="group bg-surface-elevated border-border-subtle">
       <CardContent className="space-y-3">
         <blockquote className="font-heading text-base leading-relaxed text-text-primary">
           &ldquo;{quote.text}&rdquo;
@@ -46,7 +47,7 @@ function VaultQuoteCard({ quote }: { quote: Quote }) {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gold">{quote.character}</p>
-            <p className="text-xs text-text-secondary">
+            <p className="text-xs text-text-muted">
               S{quote.season}E{quote.episode}
               {quote.episode_title && ` — ${quote.episode_title}`}
             </p>
@@ -70,23 +71,23 @@ function VaultPagination({ page, totalPages }: { page: number; totalPages: numbe
   return (
     <div className="flex items-center justify-center gap-2 pt-4">
       {page > 1 && (
-        <a
+        <Link
           href={`?page=${page - 1}`}
-          className="rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
+          className="rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary hover:text-gold transition-colors"
         >
           Previous
-        </a>
+        </Link>
       )}
       <span className="text-sm text-text-secondary">
         Page {page} of {totalPages}
       </span>
       {page < totalPages && (
-        <a
+        <Link
           href={`?page=${page + 1}`}
-          className="rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors"
+          className="rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary hover:text-gold transition-colors"
         >
           Next
-        </a>
+        </Link>
       )}
     </div>
   );

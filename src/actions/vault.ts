@@ -60,16 +60,22 @@ export async function searchVault(params: Record<string, string | undefined>): P
 
 export async function getQuoteOfTheHour(): Promise<Result<Quote | null, string>> {
   const supabase = await createServerSupabaseClient();
+  const hour = new Date().getUTCHours();
 
+  // Get total count without fetching all rows
+  const { count, error: countError } = await supabase
+    .from("quotes")
+    .select("*", { count: "exact", head: true });
+
+  if (countError || !count) return ok(null);
+
+  const offset = hour % count;
   const { data, error } = await supabase
     .from("quotes")
     .select("*")
-    .order("created_at", { ascending: true });
+    .order("created_at", { ascending: true })
+    .range(offset, offset);
 
-  if (error) return err("Failed to fetch quotes");
-  if (!data || data.length === 0) return ok(null);
-
-  const hour = new Date().getUTCHours();
-  const index = hour % data.length;
-  return ok(data[index] as Quote);
+  if (error) return err(error.message);
+  return ok((data?.[0] as Quote) ?? null);
 }

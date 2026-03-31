@@ -5,14 +5,16 @@ export const runtime = "edge";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
-  const quote = searchParams.get("quote") ?? "By Order of the Peaky Blinders";
-  const character = searchParams.get("character") ?? "";
+  const rawQuote = searchParams.get("quote") ?? "By Order of the Peaky Blinders";
+  const rawCharacter = searchParams.get("character") ?? "";
+  const quote = rawQuote.length > 200 ? rawQuote.slice(0, 200) + "..." : rawQuote;
+  const character = rawCharacter.length > 60 ? rawCharacter.slice(0, 60) + "..." : rawCharacter;
 
   return new ImageResponse(
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)",
+          background: "linear-gradient(135deg, #0c0d0e 0%, #161412 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -38,6 +40,7 @@ export async function GET(request: NextRequest) {
               marginBottom: "30px",
               letterSpacing: "4px",
               textTransform: "uppercase",
+              display: "flex",
             }}
           >
             BY ORDER
@@ -45,13 +48,14 @@ export async function GET(request: NextRequest) {
           <div
             style={{
               fontSize: "36px",
-              color: "#f5f5f5",
+              color: "#e8e2d4",
               textAlign: "center",
               lineHeight: "1.4",
               fontStyle: "italic",
+              display: "flex",
             }}
           >
-            &ldquo;{quote.length > 120 ? quote.slice(0, 120) + "..." : quote}&rdquo;
+            {`\u201C${quote.length > 120 ? quote.slice(0, 120) + "..." : quote}\u201D`}
           </div>
           {character && (
             <div
@@ -59,16 +63,18 @@ export async function GET(request: NextRequest) {
                 fontSize: "20px",
                 color: "#c9a84c",
                 marginTop: "20px",
+                display: "flex",
               }}
             >
-              — {character}
+              {`— ${character}`}
             </div>
           )}
           <div
             style={{
               fontSize: "16px",
-              color: "#888888",
+              color: "#6b6460",
               marginTop: "40px",
+              display: "flex",
             }}
           >
             byorder.com
@@ -79,6 +85,9 @@ export async function GET(request: NextRequest) {
     {
       width: 1200,
       height: 630,
+      headers: {
+        "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800",
+      },
     }
   );
 }

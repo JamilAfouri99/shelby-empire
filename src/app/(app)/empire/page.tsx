@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getUserStreak } from "@/actions/streak";
 import { EmpireCard } from "@/components/empire/empire-card";
@@ -6,6 +7,10 @@ import { BadgesGrid } from "@/components/empire/badges-grid";
 import { ActivityHeatmap } from "@/components/empire/activity-heatmap";
 import { ErrorDisplay } from "@/components/common/error-display";
 import type { UserBadge } from "@/types";
+
+export const metadata: Metadata = {
+  title: "Your Empire — By Order",
+};
 
 export default async function EmpirePage() {
   const streakResult = await getUserStreak();
@@ -48,7 +53,9 @@ export default async function EmpirePage() {
   return (
     <div className="space-y-6">
       <h1 className="font-heading text-3xl font-bold text-gold">Your Empire</h1>
-      <EmpireCard currentStreak={streak.current_streak} />
+      <div className="rounded-lg border border-gold/20 shadow-[inset_0_1px_0_rgba(201,168,76,0.1),0_0_20px_rgba(201,168,76,0.06)]">
+        <EmpireCard currentStreak={streak.current_streak} />
+      </div>
       <StreakStats streak={streak} />
       <ActivityHeatmap activeDates={activeDates} />
       <BadgesGrid earnedBadgeKeys={earnedBadgeKeys} />

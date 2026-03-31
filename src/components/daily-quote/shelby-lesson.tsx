@@ -6,7 +6,7 @@ type ShelbyLessonProps = {
 
 export function ShelbyLesson({ lesson }: ShelbyLessonProps) {
   return (
-    <Card className="border-gold/20 bg-gold/5">
+    <Card className="border-gold/15 bg-gold/[0.03]">
       <CardHeader>
         <CardTitle className="text-base text-gold">The Shelby Lesson</CardTitle>
       </CardHeader>

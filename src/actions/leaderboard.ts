@@ -4,7 +4,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ok, err, type Result } from "@/lib/utils";
 import { redis } from "@/lib/redis/client";
 
-type LeaderboardEntry = {
+export type LeaderboardEntry = {
   rank: number;
   userId: string;
   username: string;
@@ -33,26 +33,32 @@ export async function getLeaderboard(
           scores.push(entries[i + 1] as number);
         }
 
-        const { data: profiles } = await supabase
+        const { data: userData } = await supabase
           .from("profiles")
-          .select("id, username")
+          .select("id, username, user_streaks(empire_level)")
           .in("id", userIds);
 
-        const { data: streaks } = await supabase
-          .from("user_streaks")
-          .select("user_id, empire_level")
-          .in("user_id", userIds);
-
-        const profileMap = new Map((profiles ?? []).map((p) => [(p as Record<string, unknown>).id as string, p as Record<string, unknown>]));
-        const streakMap = new Map((streaks ?? []).map((s) => [(s as Record<string, unknown>).user_id as string, s as Record<string, unknown>]));
+        const userMap = new Map(
+          (userData ?? []).map((u) => {
+            const row = u as Record<string, unknown>;
+            const streakRows = row.user_streaks as Array<Record<string, unknown>> | null;
+            return [
+              row.id as string,
+              {
+                username: row.username as string,
+                empireLevel: (streakRows?.[0]?.empire_level as number) ?? 0,
+              },
+            ];
+          })
+        );
 
         return ok(
           userIds.map((uid, idx) => ({
             rank: idx + 1,
             userId: uid,
-            username: (profileMap.get(uid)?.username as string) ?? "Unknown",
+            username: userMap.get(uid)?.username ?? "Unknown",
             value: scores[idx],
-            empireLevel: (streakMap.get(uid)?.empire_level as number) ?? 0,
+            empireLevel: userMap.get(uid)?.empireLevel ?? 0,
           }))
         );
       }

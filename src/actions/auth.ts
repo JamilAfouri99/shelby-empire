@@ -47,19 +47,11 @@ export async function signup(
   }
 
   if (data.user) {
+    // The user_streaks row is auto-created by a database trigger on profile insertion.
     await supabase.from("profiles").upsert({
       id: data.user.id,
       username,
       display_name: username,
-    });
-
-    await supabase.from("user_streaks").upsert({
-      user_id: data.user.id,
-      current_streak: 0,
-      longest_streak: 0,
-      last_activity_date: null,
-      empire_level: 0,
-      total_days_active: 0,
     });
   }
 

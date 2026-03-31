@@ -3,6 +3,8 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { submitGuessSchema } from "@/lib/validators/schemas";
 import { ok, err, type Result, getTodayUTC } from "@/lib/utils";
+import { GAME_CONFIG } from "@/lib/constants/game-config";
+import { checkAndAwardBadges } from "@/actions/badges";
 import type { GameResult, DailyContentWithQuote } from "@/types";
 
 type SubmitGuessResult = {
@@ -67,7 +69,7 @@ export async function submitGuess(
   const maxGuesses = typedContent.game_type === "blinder_or_bluff" ? 1 : 6;
   const isComplete = isCorrect || newGuesses.length >= maxGuesses;
 
-  const scoreMap = [6, 5, 4, 3, 2, 1];
+  const scoreMap = GAME_CONFIG.scorePerGuess;
   const score = isCorrect ? (scoreMap[newGuesses.length - 1] ?? 1) : 0;
 
   if (existing) {
@@ -82,6 +84,13 @@ export async function submitGuess(
       .eq("id", existing.id);
 
     if (error) return err("Failed to save guess");
+
+    if (isComplete) {
+      await checkAndAwardBadges(user.id, {
+        gameScore: score,
+        gameCompleted: true,
+      });
+    }
 
     return ok({
       result: isCorrect ? "correct" as const : "wrong" as const,
@@ -106,6 +115,13 @@ export async function submitGuess(
     .single();
 
   if (error) return err("Failed to save guess");
+
+  if (isComplete) {
+    await checkAndAwardBadges(user.id, {
+      gameScore: score,
+      gameCompleted: true,
+    });
+  }
 
   return ok({
     result: isCorrect ? "correct" as const : "wrong" as const,

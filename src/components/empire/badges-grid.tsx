@@ -22,8 +22,8 @@ export function BadgesGrid({ earnedBadgeKeys }: BadgesGridProps) {
                 key={badge.key}
                 className={`rounded-lg border p-3 text-center transition-all ${
                   isEarned
-                    ? "border-gold/30 bg-gold/5"
-                    : "border-border bg-background opacity-40"
+                    ? "border-gold/25 bg-gold/[0.04]"
+                    : "border-border-subtle bg-surface opacity-30"
                 }`}
               >
                 <div className="text-2xl">{badge.icon}</div>

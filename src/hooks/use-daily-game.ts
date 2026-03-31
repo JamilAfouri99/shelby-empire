@@ -57,11 +57,10 @@ export function useDailyGame({
       const newGuesses = [...(gameState.status === "playing" ? gameState.guesses : []), newGuess];
 
       if (result.value.result === "correct") {
-        const scoreMap = [6, 5, 4, 3, 2, 1];
         setGameState({
           status: "won",
           guesses: newGuesses,
-          score: scoreMap[newGuesses.length - 1] ?? 1,
+          score: GAME_CONFIG.scorePerGuess[newGuesses.length - 1] ?? 1,
         });
         await recordDailyActivity();
       } else if (newGuesses.length >= maxGuesses) {

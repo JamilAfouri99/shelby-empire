@@ -29,7 +29,7 @@ const FEATURES = [
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border">
+      <header className="border-b border-border-subtle">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
           <span className="font-heading text-xl font-bold text-gold">By Order</span>
           <div className="flex gap-3">
@@ -43,20 +43,21 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-5xl px-4 py-24 text-center">
-        <p className="mb-4 text-sm uppercase tracking-widest text-gold">
+      <section className="relative mx-auto max-w-5xl px-4 py-24 text-center">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#0c0d0e_70%)]" />
+        <p className="relative z-10 mb-4 text-sm uppercase tracking-[0.25em] text-gold">
           The Daily Peaky Blinders Companion
         </p>
-        <h1 className="font-heading text-5xl font-bold text-text-primary md:text-7xl">
+        <h1 className="relative z-10 font-heading text-5xl font-bold text-text-primary md:text-7xl">
           By Order of the
           <br />
-          <span className="text-gold">Peaky Blinders</span>
+          <span className="font-heading text-gold">Peaky Blinders</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-text-secondary">
+        <p className="relative z-10 mx-auto mt-6 max-w-xl text-lg text-text-secondary">
           Your daily ritual. A fresh quote, a daily challenge, and an empire to build.
           Join thousands of fans who start every morning by order.
         </p>
-        <div className="mt-10 flex justify-center gap-4">
+        <div className="relative z-10 mt-10 flex justify-center gap-4">
           <Link href="/signup">
             <Button size="lg" className="text-base">Start Your Empire</Button>
           </Link>
@@ -71,9 +72,9 @@ export default function LandingPage() {
       <section className="mx-auto max-w-5xl px-4 pb-24">
         <div className="grid gap-6 md:grid-cols-2">
           {FEATURES.map(({ icon: Icon, title, description }) => (
-            <Card key={title} className="transition-all duration-300 hover:border-gold/30">
+            <Card key={title} className="transition-all duration-300 hover:border-gold/20 hover:shadow-[0_0_20px_rgba(201,168,76,0.05)]">
               <CardContent className="flex gap-4 py-6">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/[0.08]">
                   <Icon className="h-5 w-5 text-gold" />
                 </div>
                 <div>
@@ -86,7 +87,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="border-t border-border">
+      <section className="border-t border-border-subtle">
         <div className="mx-auto max-w-5xl px-4 py-16 text-center">
           <h2 className="font-heading text-2xl font-bold text-text-primary md:text-3xl">
             Ready to build your empire?
@@ -100,7 +101,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-8 text-center text-sm text-text-secondary">
+      <footer className="border-t border-border-subtle py-8 text-center text-sm text-text-muted">
         <p>By Order &copy; {new Date().getFullYear()}. A fan project. Not affiliated with BBC or the Peaky Blinders franchise.</p>
       </footer>
     </div>

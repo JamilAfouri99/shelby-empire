@@ -24,7 +24,7 @@ export default function LoginPage() {
   return (
     <Card className="w-full">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl text-gold">By Order</CardTitle>
+        <CardTitle className="font-heading text-2xl text-gold">By Order</CardTitle>
         <CardDescription>Sign in to your empire</CardDescription>
       </CardHeader>
       <CardContent>

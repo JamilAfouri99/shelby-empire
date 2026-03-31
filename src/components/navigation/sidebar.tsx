@@ -32,8 +32,8 @@ export function Sidebar() {
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
               pathname.startsWith(href)
-                ? "bg-gold/10 text-gold"
-                : "text-text-secondary hover:bg-background hover:text-text-primary"
+                ? "relative text-gold before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:rounded-full before:bg-gold"
+                : "text-text-muted hover:bg-surface-elevated hover:text-text-secondary"
             )}
           >
             <Icon className="h-4 w-4" />
@@ -45,7 +45,7 @@ export function Sidebar() {
         <form action={logout}>
           <button
             type="submit"
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-text-secondary transition-all duration-200 hover:bg-background hover:text-text-primary"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-text-muted transition-all duration-200 hover:bg-surface-elevated hover:text-text-secondary"
           >
             <LogOut className="h-4 w-4" />
             Sign Out

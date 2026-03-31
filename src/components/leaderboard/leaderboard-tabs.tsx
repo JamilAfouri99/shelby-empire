@@ -2,14 +2,7 @@
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { LeaderboardTable } from "./leaderboard-table";
-
-type LeaderboardEntry = {
-  rank: number;
-  userId: string;
-  username: string;
-  value: number;
-  empireLevel: number;
-};
+import type { LeaderboardEntry } from "@/actions/leaderboard";
 
 type LeaderboardTabsProps = {
   streaks: LeaderboardEntry[];

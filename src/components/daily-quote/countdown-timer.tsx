@@ -9,7 +9,7 @@ export function CountdownTimer() {
   return (
     <div className="flex items-center gap-2 text-sm text-text-secondary">
       <Clock className="h-4 w-4" />
-      <span>Next content in {timeLeft}</span>
+      <span>Next content in <span className="text-gold font-medium">{timeLeft}</span></span>
     </div>
   );
 }

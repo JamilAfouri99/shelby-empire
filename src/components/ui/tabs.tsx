@@ -42,7 +42,7 @@ function Tabs({
 
 function TabsList({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("inline-flex items-center gap-1 rounded-lg bg-background p-1 border border-border", className)}>
+    <div className={cn("inline-flex items-center gap-1 rounded-lg bg-surface border border-border p-1", className)}>
       {children}
     </div>
   );
@@ -66,8 +66,8 @@ function TabsTrigger({
       className={cn(
         "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all",
         isActive
-          ? "bg-surface text-gold shadow-sm"
-          : "text-text-secondary hover:text-text-primary",
+          ? "bg-surface-elevated text-gold shadow-sm"
+          : "text-text-muted hover:text-text-secondary",
         className
       )}
     >
@@ -86,8 +86,14 @@ function TabsContent({
   className?: string;
 }) {
   const { value: selected } = useTabs();
-  if (selected !== value) return null;
-  return <div className={cn("mt-4", className)}>{children}</div>;
+  return (
+    <div
+      role="tabpanel"
+      className={cn(selected === value ? "block" : "hidden", "mt-4", className)}
+    >
+      {children}
+    </div>
+  );
 }
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

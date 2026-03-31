@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getUserStreak } from "@/actions/streak";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -6,6 +7,10 @@ import { getBadgeByKey } from "@/lib/constants/badges";
 import { getEmpireLevel } from "@/lib/constants/empire-levels";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import type { Profile, UserBadge, GameResult } from "@/types";
+
+export const metadata: Metadata = {
+  title: "Profile — By Order",
+};
 
 export default async function ProfilePage() {
   const supabase = await createServerSupabaseClient();
@@ -26,6 +31,7 @@ export default async function ProfilePage() {
   const gamesPlayed = games.filter((g) => g.completed).length;
   const gamesWon = games.filter((g) => g.completed && g.score > 0).length;
   const winRate = gamesPlayed > 0 ? Math.round((gamesWon / gamesPlayed) * 100) : 0;
+  const empireLevel = streak ? getEmpireLevel(streak.current_streak) : null;
 
   return (
     <div className="space-y-6">
@@ -58,13 +64,13 @@ export default async function ProfilePage() {
         <StatCard label="Win Rate" value={`${winRate}%`} />
       </div>
 
-      {streak && (
-        <Card>
+      {empireLevel && (
+        <Card className="bg-surface-elevated">
           <CardContent className="py-4">
-            <p className="text-sm text-text-secondary">Empire Level</p>
+            <p className="text-sm text-text-muted">Empire Level</p>
             <p className="text-lg font-medium text-gold">
-              {getEmpireLevel(streak.current_streak).icon}{" "}
-              {getEmpireLevel(streak.current_streak).name}
+              {empireLevel.icon}{" "}
+              {empireLevel.name}
             </p>
           </CardContent>
         </Card>
@@ -98,7 +104,7 @@ function StatCard({ label, value }: { label: string; value: string }) {
     <Card className="text-center">
       <CardContent className="py-4">
         <p className="text-xl font-bold text-text-primary">{value}</p>
-        <p className="text-xs text-text-secondary">{label}</p>
+        <p className="text-xs text-text-muted">{label}</p>
       </CardContent>
     </Card>
   );

@@ -10,11 +10,11 @@ export function EmpireCard({ currentStreak }: EmpireCardProps) {
   const { current, next, progress, daysToNext } = getEmpireProgress(currentStreak);
 
   return (
-    <Card className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent pointer-events-none" />
+    <Card className="relative overflow-hidden border-gold/20">
+      <div className="absolute inset-0 bg-gradient-to-br from-gold/3 to-transparent pointer-events-none" />
       <CardHeader className="relative">
         <div className="text-4xl mb-2">{current.icon}</div>
-        <CardTitle className="text-2xl text-gold">{current.name}</CardTitle>
+        <CardTitle className="text-2xl text-gold font-heading">{current.name}</CardTitle>
         <p className="text-sm text-text-secondary">{current.description}</p>
       </CardHeader>
       <CardContent className="relative space-y-4">
